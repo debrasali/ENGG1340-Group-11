@@ -1,4 +1,5 @@
 #include "memory_utils.h"
+#include "animation.h"
 #include <iostream>
 #include <string>
 #include <limits>
@@ -8,17 +9,6 @@
 #include <map>
 
 using namespace MemoryUtils;
-
-void displayMainMenu() {
-    clearScreen();
-    std::cout << "Memory Card Game\n";
-    std::cout << "----------------\n\n";
-    std::cout << "1. New Game\n";
-    std::cout << "2. Load Game\n";
-    std::cout << "3. View High Scores\n";
-    std::cout << "4. Exit\n\n";
-    std::cout << "Enter your choice: ";
-}
 
 void displayDifficultyMenu() {
     clearScreen();
@@ -225,11 +215,12 @@ void playGame(GameState& state) {
 }
 
 int main() {
+    initConsole();
     GameState state;
     int choice;
     
     while (true) {
-        displayMainMenu();
+        displayAnimatedMenu();
         std::cin >> choice;
         
         switch (choice) {
@@ -243,7 +234,7 @@ int main() {
                 
                 if (diffChoice < 1 || diffChoice > 4) {
                     std::cout << "Invalid choice!\n";
-                    waitForInput();
+                    std::this_thread::sleep_for(std::chrono::seconds(3));
                     break;
                 }
                 
@@ -286,7 +277,7 @@ int main() {
                 
             default:
                 std::cout << "Invalid choice!\n";
-                waitForInput();
+                std::this_thread::sleep_for(std::chrono::seconds(3));
         }
     }
     
