@@ -224,3 +224,71 @@ void playGame(GameState& state) {
     std::cin.get();
 }
 
+int main() {
+    GameState state;
+    int choice;
+    
+    while (true) {
+        displayMainMenu();
+        std::cin >> choice;
+        
+        switch (choice) {
+            case 1: { // New Game
+                // Delete any existing saved game when starting new game
+                std::remove("memory_save.dat");
+                
+                displayDifficultyMenu();
+                int diffChoice;
+                std::cin >> diffChoice;
+                
+                if (diffChoice < 1 || diffChoice > 4) {
+                    std::cout << "Invalid choice!\n";
+                    waitForInput();
+                    break;
+                }
+                
+                initializeGame(state, getDifficultyFromChoice(diffChoice));
+                playGame(state);
+                break;
+            }
+            
+            case 2: { // Load Game
+                if (!loadGame(state)) {
+                    std::cout << "\nThere is currently no game running.\n";
+                    std::cout << "Press Enter to return to main menu...";
+                    std::cin.ignore();
+                    std::cin.get();
+                    break;
+                }
+                
+                // Check if the loaded game is already complete
+                if (isGameComplete(state)) {
+                    std::cout << "\nThis game is already complete. Starting a new game...\n";
+                    std::remove("memory_save.dat");
+                    std::cout << "Press Enter to return to main menu...";
+                    std::cin.ignore();
+                    std::cin.get();
+                    break;
+                }
+                
+                playGame(state);
+                break;
+            }
+            
+            case 3: { // View High Scores
+                std::vector<HighScore> scores = loadHighScores();
+                displayHighScoresMenu(scores);
+                break;
+            }
+            
+            case 4: // Exit
+                return 0;
+                
+            default:
+                std::cout << "Invalid choice!\n";
+                waitForInput();
+        }
+    }
+    
+    return 0;
+} 
