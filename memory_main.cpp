@@ -141,7 +141,6 @@ void playGame(GameState& state) {
             state.board[firstRow][firstCol]->isMatched) {
             std::cout << "Invalid position! Try again.\n";
             std::this_thread::sleep_for(std::chrono::seconds(3));
-            waitForInput();
             continue;
         }
         
@@ -167,7 +166,7 @@ void playGame(GameState& state) {
             state.board[secondRow][secondCol]->isMatched ||
             (firstRow == secondRow && firstCol == secondCol)) {
             std::cout << "Invalid position! Try again.\n";
-            waitForInput();
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             continue;
         }
         
