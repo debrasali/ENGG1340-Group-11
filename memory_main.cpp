@@ -177,6 +177,7 @@ void playGame(GameState& state) {
         // Check for match
         if (checkMatch(state, firstRow, firstCol, secondRow, secondCol)) {
             std::cout << "\nMatch found!\n";
+            waitForInput();
         } else {
             std::cout << "\nNo match. Cards will be hidden in 3 seconds...\n";
             // Clear any pending input
@@ -190,7 +191,6 @@ void playGame(GameState& state) {
         state.steps++;
         firstRow = -1;
         saveGame(state);
-        waitForInput();
 
         if (isGameComplete(state)) {
             // Capture final time immediately when game is completed normally
