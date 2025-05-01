@@ -286,4 +286,80 @@ namespace MemoryUtils {
             std::cout << "\n";
         }
     }
+
+    void displayHighScores(const std::vector<HighScore>& scores) {
+        clearScreen();
+        std::cout << "High Scores\n";
+        std::cout << "-----------\n\n";
+        
+        std::cout << std::left << std::setw(20) << "Player"
+                  << std::setw(10) << "Steps"
+                  << std::setw(15) << "Time"
+                  << "Difficulty\n";
+        std::cout << std::string(60, '-') << "\n";
+        
+        for (const auto& score : scores) {
+            std::string difficulty;
+            switch (score.difficulty) {
+                case Difficulty::EASY: difficulty = "Easy"; break;
+                case Difficulty::MEDIUM: difficulty = "Medium"; break;
+                case Difficulty::HARD: difficulty = "Hard"; break;
+                case Difficulty::EXTREME: difficulty = "Extreme"; break;
+            }
+            
+            std::cout << std::left << std::setw(20) << score.playerName
+                      << std::setw(10) << score.steps
+                      << std::setw(15) << formatTime(score.timeInSeconds)
+                      << difficulty << "\n";
+        }
+    }
     
+    void printSlow(const std::string& text, int delay) {
+        for (char c : text) {
+            std::cout << c << std::flush;
+            std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+        }
+    }
+    
+    void waitForInput() {
+        std::cout << "\nPress Enter to continue...";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+    
+    // Position conversion
+    bool parsePosition(const std::string& input, int& row, int& col) {
+        if (input.length() < 2) return false;
+        
+        char colChar = toupper(input[0]);
+        if (colChar < 'A' || colChar > 'Z') return false;
+        
+        try {
+            int rowNum = std::stoi(input.substr(1));
+            if (rowNum < 1) return false;
+            
+            col = colChar - 'A';
+            row = rowNum - 1;
+            return true;
+        } catch (...) {
+            return false;
+        }
+    }
+    
+    std::string positionToString(int row, int col) {
+        return std::string(1, 'A' + col) + std::to_string(row + 1);
+    }
+    
+    // Time tracking
+    int getElapsedTime(const GameState& state) {
+        auto now = std::chrono::steady_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - state.startTime);
+        return static_cast<int>(duration.count());
+    }
+    
+    std::string formatTime(int seconds) {
+        int minutes = seconds / 60;
+        seconds %= 60;
+        return std::to_string(minutes) + ":" + 
+               (seconds < 10 ? "0" : "") + std::to_string(seconds);
+    }
+} 
