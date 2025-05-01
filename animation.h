@@ -8,4 +8,4 @@ void typePrint(const std::string& text, int delayMs = 5);
 void clearScreenAnimate();
 void displayAnimatedMenu();
 
-#endif // ANIMATION_H 
+#endif // ANIMATION_H
