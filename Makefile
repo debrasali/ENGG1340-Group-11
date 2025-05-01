@@ -29,6 +29,3 @@ run: $(TARGET)
 
 # Phony targets
 .PHONY: all clean run
-
-# Ensure all files are treated as text and normalize line endings
-* text=auto 
