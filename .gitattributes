@@ -1,0 +1,13 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# C++ source files
+*.cpp text diff=cpp
+*.h text diff=cpp
+
+# Build system
+Makefile text
+*.yml text
+
+# Documentation
+*.md text
