@@ -1,0 +1,58 @@
+#include <iostream>
+#include <cstdlib>
+#include <thread>
+#include <chrono>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <locale.h>
+#endif
+
+using namespace std;
+
+void initTerminal() {
+    #ifdef _WIN32
+    system("chcp 65001 > nul");
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD dwMode = 0;
+    GetConsoleMode(hOut, &dwMode);
+    dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+    SetConsoleMode(hOut, &dwMode);
+    #else
+    setlocale(LC_ALL, "en_US.UTF-8");
+    #endif
+}
+
+class Color {
+public:
+    static const string RED;
+    static const string RESET;
+};
+
+const string Color::RED = "\033[38;2;255;60;60m";
+const string Color::RESET = "\033[0m";
+
+void showStageComplete() {
+    system("cls||clear");
+    cout << Color::RED << R"(
+          ╭━━━━━━━╮  
+         ┃  ●   ●  ┃ 
+         ┃    ▽    ┃ 
+        ╰┳━━━━━━━━━┳╯
+         ┃  ╲   ╱  ┃ 
+         ╰━╲╲╳╱╱━╯ 
+           ╰━━━━━╯  
+        MICKEY'S MAGIC
+        YOU DID IT! 🎉
+    )" << Color::RESET << endl;
+    
+    
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+}
+
+int main() {
+    initTerminal();
+    showStageComplete();
+    return 0;
+}
