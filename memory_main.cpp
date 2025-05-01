@@ -157,6 +157,7 @@ void playGame(GameState& state) {
             (firstRow == secondRow && firstCol == secondCol)) {
             std::cout << "Invalid position! Try again.\n";
             std::this_thread::sleep_for(std::chrono::seconds(3));
+            hideCard(state, firstRow, firstCol);
             continue;
         }
         
