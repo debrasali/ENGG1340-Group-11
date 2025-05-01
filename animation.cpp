@@ -38,7 +38,7 @@ void clearScreenAnimate() {
     #endif
 }
 
-void displayMenu() {
+void displayAnimatedMenu() {
     clearScreenAnimate();
     
     typePrint(BLUE + R"(
