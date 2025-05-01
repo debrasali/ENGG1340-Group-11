@@ -2,40 +2,20 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Set up GCC
-      uses: egor-tensin/setup-gcc@v1
-      with:
-        version: latest
-        platform: x64
-
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y make
-
-    - name: Build project
-      run: |
-        make clean
-        make
-
-    - name: Check executable
-      run: |
-        if [ ! -f "memory_game" ]; then
-          echo "Executable 'memory_game' not found!"
-          exit 1
-        fi
-        
-    - name: List files
-      run: ls -la 
+    - uses: actions/checkout@v4
+    - name: Build
+      run: make
+    - name: Run Tests
+      run: make check
+    - name: Distribution Check
+      run: make distcheck
