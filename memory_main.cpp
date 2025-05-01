@@ -140,6 +140,7 @@ void playGame(GameState& state) {
             isCardRevealed(state, firstRow, firstCol) ||
             state.board[firstRow][firstCol]->isMatched) {
             std::cout << "Invalid position! Try again.\n";
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             waitForInput();
             continue;
         }
