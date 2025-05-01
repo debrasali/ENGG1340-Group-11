@@ -42,4 +42,4 @@ struct HighScore {
     Difficulty difficulty;
 };
 
-#endif // MEMORY_STRUCTS_H 
+#endif
