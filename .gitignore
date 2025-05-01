@@ -1,7 +1,6 @@
 *.o
 memory_game
 memory_save.dat
-highscores.txt
 .vscode/
 .idea/
 *.swp
