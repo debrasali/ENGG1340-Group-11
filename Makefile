@@ -3,8 +3,8 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra
 
 # Project files
-SRCS = memory_main.cpp memory_utils.cpp
-HEADERS = memory_utils.h memory_structs.h
+SRCS = memory_main.cpp memory_utils.cpp animation.cpp
+HEADERS = memory_utils.h memory_structs.h animation.h
 OBJS = $(SRCS:.cpp=.o)
 TARGET = memory_game
 
