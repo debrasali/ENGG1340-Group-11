@@ -232,9 +232,11 @@ int main() {
                 int diffChoice;
                 std::cin >> diffChoice;
                 
-                if (diffChoice < 1 || diffChoice > 4) {
+                while (diffChoice < 1 || diffChoice > 4) {
                     std::cout << "Invalid choice!\n";
                     std::this_thread::sleep_for(std::chrono::seconds(3));
+                    displayDifficultyMenu();
+                    std::cin >> diffChoice;
                     break;
                 }
                 
