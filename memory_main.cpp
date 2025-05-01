@@ -234,7 +234,7 @@ int main() {
                 
                 if (diffChoice < 1 || diffChoice > 4) {
                     std::cout << "Invalid choice!\n";
-                    waitForInput();
+                    std::this_thread::sleep_for(std::chrono::seconds(3));
                     break;
                 }
                 
