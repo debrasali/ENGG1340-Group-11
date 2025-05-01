@@ -277,7 +277,7 @@ int main() {
                 
             default:
                 std::cout << "Invalid choice!\n";
-                waitForInput();
+                std::this_thread::sleep_for(std::chrono::seconds(3));
         }
     }
     
