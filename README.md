@@ -32,7 +32,8 @@ Our game is very similar to the initial concept, however our game uses modernize
 5. **Building and running the game**
 
      The game has a special file called a Makefile to make it easy to compile and run the game
-     To build and run the game you only need to type in this command :
+
+   To build and run the game you only need to type in this command :
      ```
      make run
      ```
