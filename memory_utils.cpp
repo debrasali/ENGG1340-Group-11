@@ -50,7 +50,8 @@ namespace MemoryUtils {
         
         initializeBoard(state);
     }
-    
+
+    // Initializes the board with shuffled pairs of cards based on the game state.
     void initializeBoard(GameState& state) {
         // Clear existing board
         state.board.clear();
@@ -87,7 +88,8 @@ namespace MemoryUtils {
             }
         }
     }
-    
+
+    // Generates a vector of unique emoji strings for the board.
     std::vector<std::string> generateEmojis(int count) {
         // List of emojis to use
         std::vector<std::string> allEmojis = {
@@ -99,8 +101,6 @@ namespace MemoryUtils {
             "🍬", "🍭", "☕", "🍵", "🍷", "🍺", "🎉", "🎁"
         };
 
-
-        
         // Shuffle and select the required number of emojis
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -110,22 +110,30 @@ namespace MemoryUtils {
     }
     
     // Game mechanics
+    // Checks if the given row and column are within the bounds of the board.
+    // Output: true if the position is valid; false otherwise.
     bool isValidPosition(const GameState& state, int row, int col) {
         return row >= 0 && row < state.rows && col >= 0 && col < state.cols;
     }
-    
+
+    // Checks if the card at the specified position is currently revealed.
+    // Output: true if the card is revealed; false otherwise.
     bool isCardRevealed(const GameState& state, int row, int col) {
         return state.board[row][col]->isRevealed;
     }
-    
+
+    // Reveals the card at the specified position.
     void revealCard(GameState& state, int row, int col) {
         state.board[row][col]->isRevealed = true;
     }
-    
+
+    // Hides the card at the specified position.
     void hideCard(GameState& state, int row, int col) {
         state.board[row][col]->isRevealed = false;
     }
-    
+
+    // Checks if the two specified positions on the board contain matching cards.
+    // Output: true if the cards match; false otherwise.
     bool checkMatch(GameState& state, int row1, int col1, int row2, int col2) {
         if (state.board[row1][col1]->emoji == state.board[row2][col2]->emoji) {
             state.board[row1][col1]->isMatched = true;
@@ -135,12 +143,15 @@ namespace MemoryUtils {
         }
         return false;
     }
-    
+
+    // Checks if all pairs have been matched and the game is complete.
+    // Output: true if the game is complete; false otherwise.
     bool isGameComplete(const GameState& state) {
         return state.matches == (state.rows * state.cols) / 2;
     }
 
-// File operations
+    // File operations: saves the current game state to a file.
+    // Output: true if the game was saved successfully; false otherwise.
     bool saveGame(const GameState& state) {
         std::ofstream file(state.saveFileName, std::ios::binary);
         if (!file) return false;
@@ -168,7 +179,9 @@ namespace MemoryUtils {
         
         return true;
     }
-    
+
+    // Loads the game state from a file if it exists.
+    // Output: true if the game was loaded successfully; false otherwise.
     bool loadGame(GameState& state) {
         std::ifstream file(state.saveFileName, std::ios::binary);
         if (!file) return false;
@@ -205,18 +218,21 @@ namespace MemoryUtils {
         
         return true;
     }
-    
+
+    // Saves a high score entry
     void saveHighScore(const HighScore& score) {
         std::ofstream file("highscores.txt", std::ios::app);
         if (!file) return;
         
-        // Save the complete player name without cutting off the first letter
+        // Save the complete player name
         file << score.playerName << "|"
              << score.steps << "|"
              << score.timeInSeconds << "|"
              << static_cast<int>(score.difficulty) << "\n";
     }
-    
+
+    // Loads all high scores
+    // Output: Vector of high score entries.    
     std::vector<HighScore> loadHighScores() {
         std::vector<HighScore> scores;
         std::ifstream file("highscores.txt");
@@ -249,7 +265,7 @@ namespace MemoryUtils {
         return scores;
     }
     
-    // UI helpers
+    // UI helpers: clears the console screen.
     void clearScreen() {
         #ifdef _WIN32
             system("cls");
@@ -257,7 +273,8 @@ namespace MemoryUtils {
             system("clear");
         #endif
     }
-    
+
+    // Displays the current state of the board to the console.
     void displayBoard(const GameState& state) {
         clearScreen();
         std::cout << "Steps: " << state.steps << " | Matches: " << state.matches 
@@ -306,6 +323,7 @@ namespace MemoryUtils {
         }
     }
 
+    // Displays the list of high scores in a formatted table.
     void displayHighScores(const std::vector<HighScore>& scores) {
         clearScreen();
         std::cout << "High Scores\n";
@@ -332,20 +350,23 @@ namespace MemoryUtils {
                       << difficulty << "\n";
         }
     }
-    
+
+    // Prints text to the console one character at a time, with a delay between characters.
     void printSlow(const std::string& text, int delay) {
         for (char c : text) {
             std::cout << c << std::flush;
             std::this_thread::sleep_for(std::chrono::milliseconds(delay));
         }
     }
-    
+
+    // Waits for the user to press Enter to continue.
     void waitForInput() {
         std::cout << "\nPress Enter to continue...";
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
     
-    // Position conversion
+    // Parses a board position string (e.g., "A1") into row and column indices.
+    // Output: true if parsing was successful; false otherwise.
     bool parsePosition(const std::string& input, int& row, int& col) {
         if (input.length() < 2) return false;
         
@@ -363,7 +384,9 @@ namespace MemoryUtils {
             return false;
         }
     }
-    
+
+    // Converts row and column indices to a board position string (e.g., "A1").
+    // Output: Board position string.
     std::string positionToString(int row, int col) {
         return std::string(1, 'A' + col) + std::to_string(row + 1);
     }
@@ -374,7 +397,9 @@ namespace MemoryUtils {
         auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - state.startTime);
         return static_cast<int>(duration.count());
     }
-    
+
+    // Formats a time duration in seconds as a string in MM:SS format.
+    // Output: Formatted time string.
     std::string formatTime(int seconds) {
         int minutes = seconds / 60;
         seconds %= 60;
