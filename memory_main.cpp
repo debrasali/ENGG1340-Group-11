@@ -297,6 +297,68 @@ int main() {
                 }
                 
                 initializeGame(state, getDifficultyFromChoice(diffChoice));
+
+                // *** Add Power-up Purchase Logic ***
+                clearScreen();
+                int currentCoins = 0;
+                std::ifstream coinFileIn("coin.txt");
+                if (coinFileIn.is_open()) {
+                    coinFileIn >> currentCoins;
+                    coinFileIn.close();
+                }
+
+                std::cout << "Coins: " << currentCoins << "\n\n";
+                std::cout << "Purchase Power-up\n";
+                std::cout << "---------------------\n";
+                const int quickPeekCost = 50;
+                const int countManipulatorCost = 100;
+                std::cout << "1. Quick Peek (Cost: " << quickPeekCost << ") - Briefly reveal all cards\n";
+                std::cout << "2. Count Manipulator (Cost: " << countManipulatorCost << ") - Next step doesn't count\n";
+                std::cout << "3. None\n\n";
+                std::cout << "Enter your choice: ";
+
+                int powerUpChoice;
+                std::cin >> powerUpChoice;
+
+                state.selectedPowerUp = PowerUpType::NONE; // Default to none
+                state.powerUpUsed = true; // Default to used (no power-up active)
+
+                if (powerUpChoice == 1) { // Quick Peek
+                    if (currentCoins >= quickPeekCost) {
+                        currentCoins -= quickPeekCost;
+                        state.selectedPowerUp = PowerUpType::QUICK_PEEK;
+                        state.powerUpUsed = false; // Power-up available
+                        std::cout << "\nPurchased Quick Peek!\n";
+                    } else {
+                        std::cout << "\nCoin is not enough! Proceeding without power-up.\n";
+                    }
+                } else if (powerUpChoice == 2) { // Count Manipulator
+                    if (currentCoins >= countManipulatorCost) {
+                        currentCoins -= countManipulatorCost;
+                        state.selectedPowerUp = PowerUpType::COUNT_MANIPULATOR;
+                        state.powerUpUsed = false; // Power-up available
+                        std::cout << "\nPurchased Count Manipulator!\n";
+                    } else {
+                        std::cout << "\nCoin is not enough! Proceeding without power-up.\n";
+                    }
+                } else { // None or invalid choice
+                    std::cout << "\nProceeding without power-up.\n";
+                }
+
+                // Save updated coin count if a power-up was purchased
+                if (state.selectedPowerUp != PowerUpType::NONE) {
+                    std::ofstream coinFileOut("coin.txt");
+                    if (coinFileOut.is_open()) {
+                        coinFileOut << currentCoins;
+                        coinFileOut.close();
+                    }
+                }
+                
+                std::cout << "\nPress Enter to start the game...";
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear buffer
+                std::cin.get(); // Wait for Enter
+                // *** End Power-up Purchase Logic ***
+
                 playGame(state);
                 break;
             }
@@ -341,3 +403,4 @@ int main() {
     
     return 0;
 } 
+
