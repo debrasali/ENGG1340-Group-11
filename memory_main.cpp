@@ -203,6 +203,7 @@ void playGame(GameState& state) {
 
     // Game completed (either normally or through developer key)
     clearScreen();
+    gameWinScreen();
     std::cout << "Congratulations! You've completed the game!\n";
     std::cout << "Total steps: " << state.steps << "\n";
     std::cout << "Total time: " << formatTime(finalTime) << "\n\n";
