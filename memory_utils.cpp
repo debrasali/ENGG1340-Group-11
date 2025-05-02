@@ -16,7 +16,7 @@ namespace MemoryUtils {
         return dis(gen);
     }
     
-    // Game initialization
+    // Initializes the game state based on the selected difficulty.
     void initializeGame(GameState& state, Difficulty difficulty) {
         state.difficulty = difficulty;
         state.steps = 0;
@@ -25,8 +25,8 @@ namespace MemoryUtils {
         state.isPaused = false;
         state.saveFileName = "memory_save.dat";
         state.selectedPowerUp = PowerUpType::NONE; // Initialize power-up state
-        state.powerUpUsed = true;               // Initialize as used (no power-up active)
-        state.skipNextStepCount = false;       // Initialize step skip flag
+        state.powerUpUsed = true;                  // Initialize as used (no power-up active)
+        state.skipNextStepCount = false;           // Initialize step skip flag
         
         // Set grid size based on difficulty
         switch (difficulty) {
@@ -109,7 +109,6 @@ namespace MemoryUtils {
         return std::vector<std::string>(allEmojis.begin(), allEmojis.begin() + count);
     }
     
-    // Game mechanics
     // Checks if the given row and column are within the bounds of the board.
     // Output: true if the position is valid; false otherwise.
     bool isValidPosition(const GameState& state, int row, int col) {
@@ -150,7 +149,7 @@ namespace MemoryUtils {
         return state.matches == (state.rows * state.cols) / 2;
     }
 
-    // File operations: saves the current game state to a file.
+    // Saves the current game state to a file.
     // Output: true if the game was saved successfully; false otherwise.
     bool saveGame(const GameState& state) {
         std::ofstream file(state.saveFileName, std::ios::binary);
@@ -265,7 +264,7 @@ namespace MemoryUtils {
         return scores;
     }
     
-    // UI helpers: clears the console screen.
+    // Clears the console screen.
     void clearScreen() {
         #ifdef _WIN32
             system("cls");
@@ -391,7 +390,8 @@ namespace MemoryUtils {
         return std::string(1, 'A' + col) + std::to_string(row + 1);
     }
     
-    // Time tracking
+    // Calculates the elapsed time since the game started.
+    // Output: Elapsed time in seconds.
     int getElapsedTime(const GameState& state) {
         auto now = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::seconds>(now - state.startTime);
