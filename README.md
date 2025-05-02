@@ -4,7 +4,7 @@
 This game is a memorization based game derived from the Concentration card game, where players will flip over two cards each turn. If the cards have matching images, those cards will be flipped over until the rest of the game, turns will continue until the end of the game when all of the cards are paired.
 
 ## Our Interpretation
-Our game is very similar to the initial concept, however our game uses modernized emojis as images for the cards. Each pair of cards that are correct will grant the player points, which can be exchanged for various powerups! 
+Our game is very similar to the initial concept, however our game uses modernized emojis as images for the cards. Each pair of cards that are correct will grant the player coins, which can be exchanged for various powerups to assist the user in completing the game! 
 
 ## How to run the game
 1. **Downloading the game**
