@@ -9,6 +9,7 @@
 
 using namespace std;
 
+// Initializes the console for colored output on supported systems.
 void initConsole() {
     #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -24,7 +25,8 @@ const string CYAN = "\033[96m";
 const string RESET = "\033[0m";
 const string YELLOW = "\033[93m";
 
-
+// Prints text to the console one character at a time, with a specified delay between characters.
+// Inputs: text - the string to print; delayMs - delay in milliseconds between characters.
 void typePrint(const string& text, int delayMs) {
     for (char c : text) {
         cout << c << flush;
@@ -32,6 +34,7 @@ void typePrint(const string& text, int delayMs) {
     }
 }
 
+// Clears the console screen
 void clearScreenAnimate() {
     #ifdef _WIN32
     system("cls");
@@ -40,6 +43,7 @@ void clearScreenAnimate() {
     #endif
 }
 
+// Displays the animated ASCII art as the main menu with color and typewriter effects.
 void displayAnimatedMenu() {
     clearScreenAnimate();
     
@@ -78,6 +82,7 @@ void displayAnimatedMenu() {
     cout << "Enter your choice: " << RESET;
 }
 
+// Displays the animated ASCII art after game completion with color and typewriter effects.
 void gameWinScreen() {
     typePrint(YELLOW + R"(
         .
