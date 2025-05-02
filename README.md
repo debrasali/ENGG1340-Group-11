@@ -1,11 +1,11 @@
-# ENGG1340
+# ENGG1340 Game Project Group 11
 
 ## Group Members
-1. Alvin Alexander Widjaja
-2. Bradley Wilson
-3. Deandro Elbert Brasali
-4. Dong Jiajun
-5. Hu Xiaoxuan
+1. Alvin Alexander Widjaja    @alvinalexanderw
+2. Bradley Wilson             @bradleywilss
+3. Deandro Elbert Brasali     @debrasali
+4. Dong Jiajun                @dong060111
+5. Hu Xiaoxuan                @Hu06xuan
 
 ## A Memory Card Game
 This game is a memorization based game derived from the Concentration card game, where players will flip over two cards each turn. If the cards have matching images, those cards will be flipped over until the rest of the game, turns will continue until the end of the game when all of the cards are paired.
