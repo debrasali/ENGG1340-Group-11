@@ -6,12 +6,22 @@
 #include <thread>
 #include <chrono>
 #include <iomanip>
+#include <fstream>
 #include <map>
 
 using namespace MemoryUtils;
 
 void displayDifficultyMenu() {
     clearScreen();
+    // Read and display current coin count
+    int coins = 0;
+    std::ifstream coinFile("coin.txt");
+    if (coinFile.is_open()) {
+        coinFile >> coins;
+        coinFile.close();
+    }
+    std::cout << "Coins: " << coins << "\n\n";
+    
     std::cout << "Select Difficulty\n";
     std::cout << "----------------\n\n";
     std::cout << "1. Easy (3x4)\n";
@@ -196,6 +206,47 @@ void playGame(GameState& state) {
     std::cout << "Congratulations! You've completed the game!\n";
     std::cout << "Total steps: " << state.steps << "\n";
     std::cout << "Total time: " << formatTime(finalTime) << "\n\n";
+
+     // Calculate elapsed time and capture it
+    auto endTime = std::chrono::steady_clock::now();
+    finalTime = std::chrono::duration_cast<std::chrono::seconds>(endTime - state.startTime).count();
+
+    std::cout << "Total time: " << formatTime(finalTime) << "\n\n";
+
+    // Add Coin Award Logic
+    int coinsEarned = 0;
+    switch (state.difficulty) {
+        case Difficulty::EASY:
+            coinsEarned = 100;
+            break;
+        case Difficulty::MEDIUM:
+            coinsEarned = 200;
+            break;
+        case Difficulty::HARD:
+            coinsEarned = 300;
+            break;
+        case Difficulty::EXTREME:
+            coinsEarned = 500;
+            break;
+    }
+
+    int currentCoins = 0;
+    std::ifstream coinFileIn("coin.txt");
+    if (coinFileIn.is_open()) {
+        coinFileIn >> currentCoins;
+        coinFileIn.close();
+    }
+
+    currentCoins += coinsEarned;
+
+    std::ofstream coinFileOut("coin.txt");
+    if (coinFileOut.is_open()) {
+        coinFileOut << currentCoins;
+        coinFileOut.close();
+    }
+
+    std::cout << "You earned " << coinsEarned << " coins! Total coins: " << currentCoins << "\n\n";
+
     
     // Save high score
     std::string playerName;
