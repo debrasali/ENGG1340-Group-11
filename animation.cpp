@@ -75,3 +75,21 @@ void displayAnimatedMenu() {
     }
     cout << "Enter your choice: " << RESET;
 }
+
+void gameWinScreen() {
+    typePrint(YELLOW + R"(
+        .
+                  .       |         .    .
+            .  *         -*-          *
+                 \        |         /   .
+.    .            .      /^\     .              .    .
+   *    |\   /\    /\  / / \ \  /\    /\   /|    *
+ .   .  |  \ \/ /\ \ / /     \ \ / /\ \/ /  | .     .
+         \ | _ _\/_ _ \_\_ _ /_/_ _\/_ _ \_/
+           \  *  *  *   \ \/ /  *  *  *  /
+            ` ~ ~ ~ ~ ~  ~\/~ ~ ~ ~ ~ ~ '
+
+                      YOU WON!
+    
+)" + RESET + "\n", 1)
+}
