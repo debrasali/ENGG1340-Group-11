@@ -22,6 +22,8 @@ void initConsole() {
 const string BLUE = "\033[94m";
 const string CYAN = "\033[96m";
 const string RESET = "\033[0m";
+const string YELLOW = "\033[93m";
+
 
 void typePrint(const string& text, int delayMs) {
     for (char c : text) {
