@@ -343,7 +343,6 @@ int main() {
                     std::this_thread::sleep_for(std::chrono::seconds(1));
                     displayDifficultyMenu();
                     std::cin >> diffChoice;
-                    break;
                 }
                 
                 initializeGame(state, getDifficultyFromChoice(diffChoice));
@@ -391,8 +390,10 @@ int main() {
                     } else {
                         std::cout << "\nCoin is not enough! Proceeding without power-up.\n";
                     }
-                } else { // None or invalid choice
+                } else if (powerUpChoice == 3){ // None 
                     std::cout << "\nProceeding without power-up.\n";
+                } else { // any other invalid choice 
+                    std::cout << "\nHaha You Fool, no powerups for you!.\n";
                 }
 
                 // Save updated coin count if a power-up was purchased
