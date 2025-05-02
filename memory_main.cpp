@@ -99,12 +99,58 @@ void playGame(GameState& state) {
     }
 
     int finalTime = 0;  // Store the final time when game is completed
+    state.skipNextStepCount = false; // Initialize skip flag
 
     while (!isGameComplete(state)) {
         displayBoard(state);
-        std::cout << "\nEnter position of first card (e.g., A1) or 'q' to quit: ";
+        std::cout << "\nEnter position of first card (e.g., A1), 'q' to quit, or 'P' to use power-up: ";
         std::string input;
         std::cin >> input;
+
+        // Check for power-up activation
+        if (input == "P" || input == "p") {
+            if (state.selectedPowerUp != PowerUpType::NONE && !state.powerUpUsed) {
+                if (state.selectedPowerUp == PowerUpType::QUICK_PEEK) {
+                    std::cout << "\nActivating Quick Peek!\n";
+                    // Reveal all cards
+                    for (int r = 0; r < state.rows; ++r) {
+                        for (int c = 0; c < state.cols; ++c) {
+                            if (!state.board[r][c]->isMatched) {
+                                revealCard(state, r, c);
+                            }
+                        }
+                    }
+                    displayBoard(state); // Show revealed board
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
+                    // Hide non-matched cards again
+                    for (int r = 0; r < state.rows; ++r) {
+                        for (int c = 0; c < state.cols; ++c) {
+                            if (!state.board[r][c]->isMatched) {
+                                hideCard(state, r, c);
+                            }
+                        }
+                    }
+                    state.powerUpUsed = true;
+                    std::cout << "Quick Peek used.\n";
+                    std::this_thread::sleep_for(std::chrono::seconds(1)); // Brief pause after hiding
+                    continue; // Go back to the start of the loop to display the board and prompt again
+                } else if (state.selectedPowerUp == PowerUpType::COUNT_MANIPULATOR) {
+                    std::cout << "\nActivating Count Manipulator! Your next step won't be counted.\n";
+                    state.skipNextStepCount = true;
+                    state.powerUpUsed = true;
+                    std::this_thread::sleep_for(std::chrono::seconds(1));
+                    continue; // Go back to the start of the loop
+                }
+            } else if (state.powerUpUsed && state.selectedPowerUp != PowerUpType::NONE) {
+                 std::cout << "\nPower-up already used!\n";
+                 std::this_thread::sleep_for(std::chrono::seconds(1));
+                 continue;
+            } else {
+                std::cout << "\nNo power-up available!\n";
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+                continue;
+            }
+        }
 
         // Check for developer key
         if (input == "alvinbwdean") {
@@ -135,19 +181,19 @@ void playGame(GameState& state) {
             return;
         }
 
-        int firstRow = -1, firstCol = -1;
-        int secondRow = -1, secondCol = -1;
+        int row1 = -1, col1 = -1;
+        int row2 = -1, col2 = -1;
         
-        if (!parsePosition(input, firstRow, firstCol) || 
-            !isValidPosition(state, firstRow, firstCol) ||
-            isCardRevealed(state, firstRow, firstCol) ||
-            state.board[firstRow][firstCol]->isMatched) {
+        if (!parsePosition(input, row1, col1) || 
+            !isValidPosition(state, row1, col1) ||
+            isCardRevealed(state, row1, col1) ||
+            state.board[row1][col1]->isMatched) {
             std::cout << "Invalid position! Try again.\n";
             std::this_thread::sleep_for(std::chrono::seconds(3));
             continue;
         }
         
-        revealCard(state, firstRow, firstCol);
+        revealCard(state, row1, col1);
         displayBoard(state);
         saveGame(state);
         
@@ -156,30 +202,39 @@ void playGame(GameState& state) {
         std::cin >> input;
         
         if (input == "q" || input == "Q") {
-            hideCard(state, firstRow, firstCol); // Hide the first card before quitting
+            hideCard(state, row1, col1); // Hide the first card before quitting
             std::cout << "\nGame saved. Press Enter to return to main menu...";
             std::cin.ignore();
             std::cin.get();
             return;
         }
         
-        if (!parsePosition(input, secondRow, secondCol) || 
-            !isValidPosition(state, secondRow, secondCol) ||
-            isCardRevealed(state, secondRow, secondCol) ||
-            state.board[secondRow][secondCol]->isMatched ||
-            (firstRow == secondRow && firstCol == secondCol)) {
+        if (!parsePosition(input, row2, col2) || 
+            !isValidPosition(state, row2, col2) ||
+            isCardRevealed(state, row2, col2) ||
+            state.board[row2][col2]->isMatched ||
+            (row1 == row2 && col1 == col2)) {
             std::cout << "Invalid position! Try again.\n";
             std::this_thread::sleep_for(std::chrono::seconds(3));
-            hideCard(state, firstRow, firstCol);
+            hideCard(state, row1, col1);
             continue;
         }
         
-        revealCard(state, secondRow, secondCol);
+        revealCard(state, row2, col2);
         displayBoard(state);
         saveGame(state);
         
+        // Increment steps only if not skipped by power-up
+        if (!state.skipNextStepCount) {
+            state.steps++;
+        } else {
+            std::cout << "\nStep count skipped due to Count Manipulator!\n";
+            state.skipNextStepCount = false; // Reset flag after skipping one step
+            std::this_thread::sleep_for(std::chrono::seconds(1)); 
+        }
+
         // Check for match
-        if (checkMatch(state, firstRow, firstCol, secondRow, secondCol)) {
+        if (checkMatch(state, row1, col1, row2, col2)) {
             std::cout << "\nMatch found!\n";
             waitForInput();
         } else {
@@ -188,14 +243,10 @@ void playGame(GameState& state) {
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             // Simple 3-second wait
             std::this_thread::sleep_for(std::chrono::seconds(3));
-            hideCard(state, firstRow, firstCol);
-            hideCard(state, secondRow, secondCol);
+            hideCard(state, row1, col1);
+            hideCard(state, row2, col2);
         }
         
-        state.steps++;
-        firstRow = -1;
-        saveGame(state);
-
         if (isGameComplete(state)) {
             // Capture final time immediately when game is completed normally
             finalTime = getElapsedTime(state);
@@ -206,17 +257,15 @@ void playGame(GameState& state) {
 
     // Game completed (either normally or through developer key)
     clearScreen();
-    gameWinScreen();
-    std::cout << "Congratulations! You've completed the game!\n";
+    std::cout << "\nCongratulations! You've completed the game!\n";
     std::cout << "Total steps: " << state.steps << "\n";
-    std::cout << "Total time: " << formatTime(finalTime) << "\n\n";
 
-     // Calculate elapsed time and capture it
+    // Calculate elapsed time and capture it
     auto endTime = std::chrono::steady_clock::now();
     finalTime = std::chrono::duration_cast<std::chrono::seconds>(endTime - state.startTime).count();
 
     std::cout << "Total time: " << formatTime(finalTime) << "\n\n";
-
+    
     // Add Coin Award Logic
     int coinsEarned = 0;
     switch (state.difficulty) {
