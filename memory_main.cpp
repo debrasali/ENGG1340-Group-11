@@ -93,6 +93,9 @@ void playGame(GameState& state) {
         auto pauseDuration = std::chrono::steady_clock::now() - state.pausedTime;
         state.startTime += pauseDuration;
         state.isPaused = false;
+    } else {
+        // Only start a new timer if it's not a resumed game
+        state.startTime = std::chrono::steady_clock::now(); 
     }
 
     int finalTime = 0;  // Store the final time when game is completed
