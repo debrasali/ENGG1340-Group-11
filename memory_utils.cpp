@@ -21,9 +21,12 @@ namespace MemoryUtils {
         state.difficulty = difficulty;
         state.steps = 0;
         state.matches = 0;
-        state.startTime = std::chrono::steady_clock::now();
+        
         state.isPaused = false;
         state.saveFileName = "memory_save.dat";
+        state.selectedPowerUp = PowerUpType::NONE; // Initialize power-up state
+        state.powerUpUsed = true;               // Initialize as used (no power-up active)
+        state.skipNextStepCount = false;       // Initialize step skip flag
         
         // Set grid size based on difficulty
         switch (difficulty) {
@@ -258,7 +261,23 @@ namespace MemoryUtils {
     void displayBoard(const GameState& state) {
         clearScreen();
         std::cout << "Steps: " << state.steps << " | Matches: " << state.matches 
-                  << " | Time: " << formatTime(getElapsedTime(state)) << "\n\n";
+                  << " | Time: " << formatTime(getElapsedTime(state));
+
+        // Display available power-up
+        if (state.selectedPowerUp != PowerUpType::NONE && !state.powerUpUsed) {
+            std::cout << " | Power-up: ";
+            switch (state.selectedPowerUp) {
+                case PowerUpType::QUICK_PEEK:
+                    std::cout << "Quick Peek (Press P)";
+                    break;
+                case PowerUpType::COUNT_MANIPULATOR:
+                    std::cout << "Count Manipulator (Press P)";
+                    break;
+                default: // NONE or should not happen
+                    break;
+            }
+        }
+        std::cout << "\n\n";
         
         // Print column headers (A, B, C, ...)
         std::cout << "  ";
