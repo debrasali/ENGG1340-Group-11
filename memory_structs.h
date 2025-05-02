@@ -14,6 +14,13 @@ enum class Difficulty {
     EXTREME  // 9x10 grid
 };
 
+// Enum for Power-ups
+enum class PowerUpType {
+    NONE,
+    QUICK_PEEK,
+    COUNT_MANIPULATOR
+};
+
 struct Card {
     std::string emoji;      // The emoji character
     bool isRevealed;        // Whether the card is face up
@@ -33,6 +40,9 @@ struct GameState {
     std::chrono::steady_clock::time_point startTime;          // Game start time
     std::chrono::steady_clock::time_point pausedTime;           // Track when game was paused
     bool isPaused;                                           // Track if game is currently paused
+    PowerUpType selectedPowerUp;
+    bool powerUpUsed;
+    bool skipNextStepCount; // For Count Manipulator
 };
 
 struct HighScore {
