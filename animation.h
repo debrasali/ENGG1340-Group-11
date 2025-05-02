@@ -7,5 +7,6 @@ void initConsole();
 void typePrint(const std::string& text, int delayMs = 5);
 void clearScreenAnimate();
 void displayAnimatedMenu();
+void gameWinScreen();
 
 #endif // ANIMATION_H
