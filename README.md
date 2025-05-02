@@ -46,5 +46,16 @@ Our game is very similar to the initial concept, however our game uses modernize
      ```
      This will automatically take you into the main menu of the game and you can start playing!
 
-## Game Features
+### Game Features
 
+Generation of random events:
+
+Data structures for storing data:
+
+Dynamic memory management:
+
+File input/output:
+
+Program codes in multiple files:
+
+Multiple Difficulty Levels:
