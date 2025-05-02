@@ -11,8 +11,10 @@
 
 using namespace MemoryUtils;
 
+// Displays the difficulty selection menu, shows current coin count, and prompts user for a choice.
 void displayDifficultyMenu() {
     clearScreen();
+    
     // Read and display current coin count
     int coins = 0;
     std::ifstream coinFile("coin.txt");
@@ -31,6 +33,7 @@ void displayDifficultyMenu() {
     std::cout << "Enter your choice: ";
 }
 
+// Displays the high scores menu, grouped by difficulty. Waits for user to press Enter to return.
 void displayHighScoresMenu(const std::vector<HighScore>& scores) {
     clearScreen();
     std::cout << "High Scores\n";
@@ -77,6 +80,8 @@ void displayHighScoresMenu(const std::vector<HighScore>& scores) {
     std::cin.get();
 }
 
+// Converts a user's numeric menu choice to the corresponding Difficulty enum.
+// Output: Difficulty level corresponding to the user's choice.
 Difficulty getDifficultyFromChoice(int choice) {
     switch (choice) {
         case 1: return Difficulty::EASY;
@@ -87,6 +92,7 @@ Difficulty getDifficultyFromChoice(int choice) {
     }
 }
 
+// Main game loop. Handles card selection, power-up usage, board display, and win logic for the current game state.
 void playGame(GameState& state) {
     // If game was paused, resume the timer
     if (state.isPaused) {
@@ -300,7 +306,6 @@ void playGame(GameState& state) {
     }
 
     std::cout << "You earned " << coinsEarned << " coins! Total coins: " << currentCoins << "\n\n";
-
     
     // Save high score
     std::string playerName;
@@ -320,6 +325,7 @@ void playGame(GameState& state) {
     std::cin.get();
 }
 
+// Entry point of the application. Handles the main menu, game initialization, loading/saving, and program exit.
 int main() {
     initConsole();
     GameState state;
