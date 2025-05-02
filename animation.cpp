@@ -22,6 +22,8 @@ void initConsole() {
 const string BLUE = "\033[94m";
 const string CYAN = "\033[96m";
 const string RESET = "\033[0m";
+const string YELLOW = "\033[93m";
+
 
 void typePrint(const string& text, int delayMs) {
     for (char c : text) {
@@ -74,4 +76,22 @@ void displayAnimatedMenu() {
         cout << "\r";
     }
     cout << "Enter your choice: " << RESET;
+}
+
+void gameWinScreen() {
+    typePrint(YELLOW + R"(
+        .
+                  .       |         .    .
+            .  *         -*-          *
+                 \        |         /   .
+.    .            .      /^\     .              .    .
+   *    |\   /\    /\  / / \ \  /\    /\   /|    *
+ .   .  |  \ \/ /\ \ / /     \ \ / /\ \/ /  | .     .
+         \ | _ _\/_ _ \_\_ _ /_/_ _\/_ _ \_/
+           \  *  *  *   \ \/ /  *  *  *  /
+            ` ~ ~ ~ ~ ~  ~\/~ ~ ~ ~ ~ ~ '
+
+                      YOU WON!
+    
+)" + RESET + "\n", 1)
 }
