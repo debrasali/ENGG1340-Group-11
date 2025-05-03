@@ -50,9 +50,9 @@ Our game is very similar to the initial concept, however our game uses modernize
 
 1. **Generation of random events** : The game will generate a board of cards of a fixed size, with each card having randomly matched with another within the board
 
-2. **Data structures for storing data**: Vectors and arrays are used in the logic of matching the cards with each other. 
+2. **Data structures for storing data**: A 2D array is used to store cards and facilitate the logic of matching them. Vectors are used to store high scores. 
 
-3. **Dynamic memory management**:The game uses vector as a dynamic memory management system to store the cards in a grid, allowing for easy space manipulation. 
+3. **Dynamic memory management**: The game uses a dynamically allocated 2D array to store the card grid. 
 
 4. **File input/output**: File I/O is handled in loading the game and saving highscores on to a ``` .txt ``` file, saves are also saved in a file. 
 
