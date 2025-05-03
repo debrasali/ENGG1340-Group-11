@@ -117,7 +117,7 @@ Our game is very similar to the initial concept, however our game uses modernize
    - **Easy**: 100 coins  
    - **Medium**: 200 coins  
    - **Hard**: 300 coins  
-   - **Extreme**: 400 coins  
+   - **Extreme**: 500 coins  
 
 5. **Powerups Shop**  
 
