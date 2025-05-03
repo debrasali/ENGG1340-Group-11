@@ -310,7 +310,6 @@ void playGame(GameState& state) {
     // Save high score
     std::string playerName;
     std::cout << "Enter your name for the high score: ";
-    std::cin.ignore();
     std::getline(std::cin, playerName);
     
     HighScore score;
