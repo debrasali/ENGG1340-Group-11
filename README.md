@@ -7,6 +7,9 @@
 4. Dong Jiajun&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@dong060111
 5. Hu Xiaoxuan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Hu06xuan
 
+## Demo Video
+Link: https://drive.google.com/file/d/1PIF6Sk-_rnxsqQJjuxVhacTykbDQcx1X/view
+
 ## A Memory Card Game
 This game is a memorization based game derived from the Concentration card game, where players will flip over two cards each turn. If the cards have matching images, those cards will be flipped over until the rest of the game, turns will continue until the end of the game when all of the cards are paired.
 
