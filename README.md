@@ -48,14 +48,25 @@ Our game is very similar to the initial concept, however our game uses modernize
 
 ### Game Features
 
-Generation of random events:
+1. **Generation of random events** : The game will generate a board of cards of a fixed size, with each card having randomly matched with another within the board
 
-Data structures for storing data:
+2. **Data structures for storing data**: Vectors and arrays are used in the logic of matching the cards with each other. 
 
-Dynamic memory management:
+3. **Dynamic memory management**:The game uses vector as a dynamic memory management system to store the cards in a grid, allowing for easy space manipulation. 
 
-File input/output:
+4. **File input/output**: File I/O is handled in loading the game and saving highscores on to a ``` .txt ``` file, saves are also saved in a file. 
 
-Program codes in multiple files:
+5. **Program codes in multiple files**: Animations and memory utility for the game is stored in separate files to not clutter the main ``` memory-main.cpp ``` file 
 
-Multiple Difficulty Levels:
+6. **Multiple Difficulty Levels**: The game has multiple difficulty levels, with each level having a different board size
+
+   - Easy **(3x4)**
+   - Medium **(5x6)**
+   - Hard **(7x8)**
+   - Extreme **(9x10)**
+8. **Powerups**: After completing the game, the player will receive coins that can be exchanged for powerups for their next playthrough. Currently there are 2 powerups:
+
+   - Quick Peek (50 Coins) : Allows the player to see all of the cards for a brief moment
+   - Count manipulator (100 Coins) : The next step taken by the player doesn't count, allowing the player to achieve a higher score with lesser move count.
+
+                              
