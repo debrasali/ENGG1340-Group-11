@@ -69,6 +69,63 @@ Our game is very similar to the initial concept, however our game uses modernize
    - Quick Peek (50 Coins) : Allows the player to see all of the cards for a brief moment
    - Count manipulator (100 Coins) : The next step taken by the player doesn't count, allowing the player to achieve a higher score with lesser move count.
 
+## How To Play The Game
+
+1. **Starting the Game**  
+
+   After running the game with `make run`, you will be greeted with the main menu.  
+
+   - Select `1` to start a **New Game**  
+   - Select `2` to **Load Game** (if you have a saved progress)  
+   - Select `3` to **View High Score**  
+   - Select `4` to **Exit the game**  
+
+2. **Selecting Difficulty**  
+
+   The game offers four difficulty levels with different board sizes:  
+
+   - **Easy (3x4)** - Perfect for beginners  
+   - **Medium (5x6)** - A balanced challenge  
+   - **Hard (7x8)** - For experienced players  
+   - **Extreme (9x10)** - Only for the bravest souls  
+
+   Each difficulty affects:  
+
+   - Number of cards to match  
+   - Coin rewards (more difficult = more coins)  
+   - High score potential  
+
+3. **Gameplay Mechanics**  
+
+   - The board displays all cards face down (🟦)  
+   - On your turn, enter:  
+      ```
+      Column: [letter], Row: [number] (e.g., A1, b3, C2)  
+      ```  
+      to flip a card  
+   - Match two cards with the same emoji to make them stay revealed  
+   - Non-matching cards will flip back after 3 seconds
+   - The game ends when all pairs are matched  
+
+4. **Scoring System**  
+
+   Your performance is ranked by:  
+   - Least steps used to complete the game  
+   - Least time needed to finish  
+
+   Base coins earned for completion:  
+   - **Easy**: 100 coins  
+   - **Medium**: 200 coins  
+   - **Hard**: 300 coins  
+   - **Extreme**: 400 coins  
+
+5. **Powerups Shop**  
+
+   After completing a game, earned coins can be used to purchase:  
+
+   - **Quick Peek (50 coins)**: Reveals all cards for 2 seconds when used  
+   - **Count Manipulator (100 coins)**: Gives 1 free move that doesn't count toward your score  
+
 ## Project File Structure
 
 | File/Directory | Purpose |
