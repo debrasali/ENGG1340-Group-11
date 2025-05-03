@@ -69,4 +69,27 @@ Our game is very similar to the initial concept, however our game uses modernize
    - Quick Peek (50 Coins) : Allows the player to see all of the cards for a brief moment
    - Count manipulator (100 Coins) : The next step taken by the player doesn't count, allowing the player to achieve a higher score with lesser move count.
 
-                              
+## Project File Structure
+
+| File/Directory | Purpose |
+|---------------|---------|
+| **.github/workflows/c-cpp.yml** | GitHub Actions configuration for C/C++ CI builds |
+| **.gitattributes** | Git configuration for line endings and file types |
+| **.gitignore** | Specifies which files/folders to exclude from version control |
+| **Makefile** | Build automation script for compiling and running the game |
+| **README.md** | Project documentation and game instructions |
+| **animation.cpp** | Implementation of game animation effects |
+| **animation.h** | Header file for animation functions |
+| **coin.txt** | Stores player's coin balance for powerups |
+| **highscores.txt** | Records top player scores |
+| **memory_main.cpp** | Main game logic and entry point |
+| **memory_structs.h** | Data structures for game state |
+| **memory_utils.cpp** | Helper functions implementation |
+| **memory_utils.h** | Header for utility functions |
+
+### Key Components
+- **Core Game Files**: `memory_main.cpp`, `memory_structs.h`
+- **Utility Modules**: `memory_utils.cpp/h`, `animation.cpp/h`
+- **Data Files**: `coin.txt`, `highscores.txt`
+- **Build Config**: `Makefile`, `.gitignore`, `.gitattributes`
+- **CI/CD**: `.github/workflows/c-cpp.yml`
