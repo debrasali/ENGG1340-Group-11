@@ -414,7 +414,7 @@ int main() {
                 std::cout << "\nPress Enter to start the game...";
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear buffer
                 std::cin.get(); // Wait for Enter
-                // *** End Power-up Purchase Logic ***
+                // End Power-up Purchase Logic
 
                 playGame(state);
                 break;
