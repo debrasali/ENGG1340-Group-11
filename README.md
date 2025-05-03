@@ -72,37 +72,39 @@ Our game is very similar to the initial concept, however our game uses modernize
 
 ## How To Play The Game
 
-1. **Starting the Game**
+1. **Starting the Game**  
 
-   After running the game with make run, you will be greeted with the main menu.
-   
-   - Select 1 to start a **New Game**
-   - Select 2 to **Load Game** (if you have a saved progress)
-   - Select 3 to **View High Score**
-   - Select 4 to **Exit the game**
-  
-2.  **Selecting Difficulty**
+   After running the game with `make run`, you will be greeted with the main menu.  
 
-   The game offers four difficulty levels with different board sizes:
-   
-   - **Easy (3x4)** - Perfect for beginners
-   - **Medium (5x6)** - A balanced challenge
-   - **Hard (7x8)** - For experienced players
-   - **Extreme (9x10)** - Only for the bravest souls
-   
-   Each difficulty affects:
-   
-   - Number of cards to match
-   - Coin rewards (more difficult = more coins)
-   - High score potential
+   - Select `1` to start a **New Game**  
+   - Select `2` to **Load Game** (if you have a saved progress)  
+   - Select `3` to **View High Score**  
+   - Select `4` to **Exit the game**  
 
-3. **Gameplay Mechanics**
-   
-   1. The board displays all cards face down (🟦)
-   2. On your turn, enter:
-      Column: [letter], Row: [number], (e.g., A1, b3, C2)
-      to flip a card
-   3. Match two cards with the same emoji to make them stay revealed
-   4. Non-matching cards will flip back after 1 second
-   5. The game ends when all pairs are matched
+2. **Selecting Difficulty**  
+
+   The game offers four difficulty levels with different board sizes:  
+
+   - **Easy (3x4)** - Perfect for beginners  
+   - **Medium (5x6)** - A balanced challenge  
+   - **Hard (7x8)** - For experienced players  
+   - **Extreme (9x10)** - Only for the bravest souls  
+
+   Each difficulty affects:  
+
+   - Number of cards to match  
+   - Coin rewards (more difficult = more coins)  
+   - High score potential  
+
+3. **Gameplay Mechanics**  
+
+   1. The board displays all cards face down (🟦)  
+   2. On your turn, enter:  
+      ```
+      Column: [letter], Row: [number] (e.g., A1, b3, C2)  
+      ```  
+      to flip a card  
+   3. Match two cards with the same emoji to make them stay revealed  
+   4. Non-matching cards will flip back after 1 second  
+   5. The game ends when all pairs are matched  
 
