@@ -82,7 +82,7 @@ Our game is very similar to the initial concept, however our game uses modernize
    - Select 4 to **Exit the game**
   
 2.  **Selecting Difficulty**
-   
+
    The game offers four difficulty levels with different board sizes:
    
    - **Easy (3x4)** - Perfect for beginners
