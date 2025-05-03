@@ -349,6 +349,19 @@ int main() {
                     displayDifficultyMenu();
                     std::cin >> diffChoice;
                 }
+
+                // Difficulty selection roasts 
+                if (diffChoice == 1) {
+                    std::cout << "Aww, scared of a challenge? Don't worry, we'll go easy on you....\n";
+                }    else if (diffChoice == 2) {
+                        std::cout << "Ah, the 'I'm kinda serious but still value my sanity' pick. Bold.\n";
+                }    else if (diffChoice == 3) {
+                        std::cout << "Someone's feeling brave! Or just stupid. Either way, good luck - you'll need it.\n";
+                }    else if (diffChoice == 4) {
+                        std::cout << "Oh. Oh no. You're one of *those* people... Absolute madlad. Enjoy the suffering.\n";
+                }
+                
+                std::this_thread::sleep_for(std::chrono::milliseconds(1500)); // 1.5 second pause
                 
                 initializeGame(state, getDifficultyFromChoice(diffChoice));
 
