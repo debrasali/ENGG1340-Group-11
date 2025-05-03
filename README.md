@@ -64,9 +64,19 @@ Our game is very similar to the initial concept, however our game uses modernize
    - Medium **(5x6)**
    - Hard **(7x8)**
    - Extreme **(9x10)**
+     
 8. **Powerups**: After completing the game, the player will receive coins that can be exchanged for powerups for their next playthrough. Currently there are 2 powerups:
 
    - Quick Peek (50 Coins) : Allows the player to see all of the cards for a brief moment
    - Count manipulator (100 Coins) : The next step taken by the player doesn't count, allowing the player to achieve a higher score with lesser move count.
 
 ## How To Play The Game
+
+1. **Starting the Game**
+   After running the game with make run, you will be greeted with the main menu.
+   - Select 1 to start a **New Game**
+   - Select 2 to **Load Game** (if you have a saved progress)
+   - Select 3 to **View High Score**
+   - Select 4 to **Exit the game**
+
+
