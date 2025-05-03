@@ -69,4 +69,4 @@ Our game is very similar to the initial concept, however our game uses modernize
    - Quick Peek (50 Coins) : Allows the player to see all of the cards for a brief moment
    - Count manipulator (100 Coins) : The next step taken by the player doesn't count, allowing the player to achieve a higher score with lesser move count.
 
-                              
+### How To Play The Game
