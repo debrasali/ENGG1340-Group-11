@@ -64,10 +64,10 @@ void displayAnimatedMenu() {
 
     typePrint(CYAN + R"(
     ╔═════════════════════════════╗
-    ║ )" + BLUE + "[1] New Game" + CYAN +  R"(               ║
-    ║ )" + BLUE + "[2] Load Game" + CYAN +  R"(              ║
-    ║ )" + BLUE + "[3] View High Scores" + CYAN +  R"(       ║
-    ║ )" + BLUE + "[4] Exit" + CYAN +  R"(                   ║
+    ║ )" + BLUE + "[1] New Game" + CYAN +  R"(                ║
+    ║ )" + BLUE + "[2] Load Game" + CYAN +  R"(               ║
+    ║ )" + BLUE + "[3] View High Scores" + CYAN +  R"(        ║
+    ║ )" + BLUE + "[4] Exit" + CYAN +  R"(                    ║
     ╚═════════════════════════════╝
 )" + RESET + "\n", 10);
 
