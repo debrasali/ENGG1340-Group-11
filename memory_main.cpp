@@ -173,6 +173,31 @@ void playGame(GameState& state) {
             finalTime = getElapsedTime(state);
             // Delete save file since game is complete
             std::remove("memory_save.dat");
+            // Clear the input buffer before getting high score name
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            
+            // Get player name for high score
+            std::string playerName;
+            std::cout << "Enter your name for the high score: ";
+            std::getline(std::cin, playerName);
+            
+            // Handle empty name case
+            if (playerName.empty()) {
+                playerName = "Anonymous";
+            }
+            
+            // Save high score
+            HighScore score;
+            score.playerName = playerName;
+            score.steps = state.steps;
+            score.timeInSeconds = finalTime;
+            score.difficulty = state.difficulty;
+            saveHighScore(score);
+            
+            std::cout << "\nHigh score saved!\n";
+            std::cout << "Press Enter to return to main menu...\n";
+            std::cin.get();
+            
             break;  // Exit the game loop
         }
 
