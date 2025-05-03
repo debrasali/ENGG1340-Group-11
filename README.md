@@ -98,13 +98,13 @@ Our game is very similar to the initial concept, however our game uses modernize
 
 3. **Gameplay Mechanics**  
 
-   1. The board displays all cards face down (🟦)  
-   2. On your turn, enter:  
+   - The board displays all cards face down (🟦)  
+   - On your turn, enter:  
       ```
       Column: [letter], Row: [number] (e.g., A1, b3, C2)  
       ```  
       to flip a card  
-   3. Match two cards with the same emoji to make them stay revealed  
-   4. Non-matching cards will flip back after 1 second  
-   5. The game ends when all pairs are matched  
+   - Match two cards with the same emoji to make them stay revealed  
+   - Non-matching cards will flip back after 1 second  
+   - The game ends when all pairs are matched  
 
