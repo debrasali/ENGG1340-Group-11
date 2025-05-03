@@ -105,6 +105,29 @@ Our game is very similar to the initial concept, however our game uses modernize
       ```  
       to flip a card  
    - Match two cards with the same emoji to make them stay revealed  
-   - Non-matching cards will flip back after 1 second  
+   - Non-matching cards will flip back after 3 seconds
    - The game ends when all pairs are matched  
 
+4. **Scoring System**  
+
+   Your performance is ranked by:  
+   - Least steps used to complete the game  
+   - Least time needed to finish  
+
+   Base coins earned for completion:  
+   - **Easy**: 100 coins  
+   - **Medium**: 200 coins  
+   - **Hard**: 300 coins  
+   - **Extreme**: 400 coins  
+
+5. **Powerups Shop**  
+
+   After completing a game, earned coins can be used to purchase:  
+
+   - **Quick Peek (50 coins)**: Reveals all cards for 2 seconds when used  
+   - **Count Manipulator (100 coins)**: Gives 1 free move that doesn't count toward your score  
+
+6. **Saving Progress**  
+
+   - Your high scores are automatically saved in `highscores.txt` which can be seen through `View High Score` feature
+   - You can save your current game progress to continue later, the time will automatically be stopped once you quit the game and continues to run when you load the game again
