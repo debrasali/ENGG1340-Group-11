@@ -46,7 +46,7 @@ Our game is very similar to the initial concept, however our game uses modernize
      ```
      This will automatically take you into the main menu of the game and you can start playing!
 
-### Game Features
+## Game Features
 
 1. **Generation of random events** : The game will generate a board of cards of a fixed size, with each card having randomly matched with another within the board
 
