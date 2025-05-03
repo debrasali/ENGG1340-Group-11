@@ -72,21 +72,26 @@ Our game is very similar to the initial concept, however our game uses modernize
 
 ## How To Play The Game
 
-1. **Starting the Game** : After running the game with make run, you will be greeted with the main menu.
+1. **Starting the Game**
+
+   After running the game with make run, you will be greeted with the main menu.
    
    - Select 1 to start a **New Game**
    - Select 2 to **Load Game** (if you have a saved progress)
    - Select 3 to **View High Score**
    - Select 4 to **Exit the game**
   
-2. **Selecting Difficulty**
+4. **Selecting Difficulty**
+   
    The game offers four difficulty levels with different board sizes:
+   
    - **Easy (3x4)** - Perfect for beginners
    - **Medium (5x6)** - A balanced challenge
    - **Hard (7x8)** - For experienced players
    - **Extreme (9x10)** - Only for the bravest souls
    
    Each difficulty affects:
+   
    - Number of cards to match
    - Coin rewards (more difficult = more coins)
    - High score potential
